@@ -313,6 +313,12 @@ Mounted on: Đường dẫn khởi tạo
 
 tmpfs là temporary filesystem = temporary storage (vùng lưu trữ tạm) với khả năng truy cập đọc và ghi rất nhanh trên vùng lưu trữ được đó. Quan trọng là chúng ta cần nhớ rằng, dữ liệu trên vùng lưu trữ tmpfs sẽ bị mất khi hệ thống bị reboot hay không, cực kì thích hợp để chứa dữ liệu cache site của website trên vùng tmpfs.
 
+* Liêt kê danh sách thông tin tất cả các thiết bị khối, đó là các phân vùng ổ đĩa cứng và các thiết bị lưu trữ khác như ổ đĩa quang và ổ đĩa flash
+
+	lsblk
+
+![](https://i.imgur.com/phAFn4k.png)
+
 ## 4. Network ##
 
 **4.1. Sử dụng lệnh iftop**
