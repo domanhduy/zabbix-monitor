@@ -212,11 +212,82 @@ Configuration -> Host -> Create host
 
 	{$SNMP_COMMUNITY} => chuoi_community
 
-chuoi_community đã cấu hình bên switch
+chuoi_community đã cấu hình bên server
 
-- Add host thành công và thu thập data từ switch
+- Add host thành công và thu thập data từ client
 
 ![](https://i.imgur.com/ptXB7T5.png)
 
 ![](https://i.imgur.com/PxSOOQA.png)
+
+# 4. Demo add host VMware  #
+
+Zabbix hỗ trợ monitor các thông tin về host VMware ESXi thông qua SNMP
+
+## 4.1. Thao tác trên vmware ESXI ##
+
+* SSH vào host VMware ESXi , bật service SNMP và set một số thông số cơ bản
+
++ Hiển thị thông tin về SNMP của VMware ESXi
+
+		esxcli system snmp get
+
+![Imgur](https://i.imgur.com/tUv0g2b.png)
+
++ Thiết lập enable, location, contact
+
+
+		esxcli system snmp set --enable yes
+
+![Imgur](https://i.imgur.com/rIN42UJ.png)
+
+		esxcli system snmp set --syscontact DoDuy
+		esxcli system snmp set --syscontact T4
+		esxcli system snmp set --communities public
+
+![Imgur](https://i.imgur.com/XQXB14O.png)
+
+## 3.2. Bật service SNMP server trên VMWare ESXi ##
+
+- Truy cập vào vSphere client
+
+![Imgur](https://i.imgur.com/5gzvrCu.png)
+
+## 3.3. Thao tác trên test trên server Zabbix ##
+
+SSH vào server zabbix
+
+		snmpwalk -v 1 -c public -O e 172.16.3.145
+
+![Imgur](https://i.imgur.com/RHAPfGO.png)
+
+## 3.4. Thao tác trên web interface Zabbix ##
+
+- Add host 
+
+Configuration -> Host -> Create host
+
+![Imgur](https://i.imgur.com/8XJCjJ6.png)
+
+Group: Discovered host
+
+- Lựa chọn template Template Virt VMware
+
+![Imgur](https://i.imgur.com/LIKsfBe.png)
+
+- Macros
+
+{$PASSWORD} => username
+
+{$URL} => https://ip_server_vmwar/sdk
+
+{$USERNAME} => password
+
+- Add host thành công và thu thập data từ host VMware ESXi
+
+Đợi một lúc để zabbix server cập nhật trạng thái zabbix server sẽ Discover ra các VM có trong host Vmware ESXi
+
+![Imgur](https://i.imgur.com/x3ahVXg.png)
+
+
 
