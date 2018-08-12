@@ -3,6 +3,10 @@
 * Cài đặt
 
 		yum install snmp snmp-mibs-downloader
+		
+		or
+		
+		yum -y install net-snmp net-snmp-utils 
 
 * Chỉnh sửa config
 
