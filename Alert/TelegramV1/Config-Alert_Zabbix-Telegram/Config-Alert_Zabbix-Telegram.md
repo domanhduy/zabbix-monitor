@@ -128,5 +128,5 @@ Cấu hình những thông số trong quá trình gửi email. Những thứ c�
 
 * Test gửi alert qua telegram khi action được thực hiện
 
-![](../images/Screenshot_368.png)
+![](../images/Screenshot_369.png)
 
