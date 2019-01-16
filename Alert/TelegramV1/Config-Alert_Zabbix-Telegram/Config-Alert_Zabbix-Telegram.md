@@ -1,6 +1,6 @@
 # Thao tác cấu hình gửi Zabbix alert qua Telegram #
 
-**1. Tạo bot telegram**
+## 1. Tạo bot telegram
 
 - Yêu cầu bạn phải cài đặt ứng dụng telegram và tạo tài khoản để sử dụng
 
@@ -41,11 +41,35 @@ Chát trên app ở kênh của mình vừa tạo và F5 trình duyệt sẽ th�
 
 Như vậy là bot đã hoạt động và bạn lưu giữu lấy token API và chat ID.
 
-**2. Cấu hình trên Web Zabbix**
+## 2. Thiết lập alert trên zabbix server
+
+```
+cd /usr/lib/zabbix/alertscripts
+wget https://raw.githubusercontent.com/domanhduy/zabbix-monitor/master/Alert/TelegramV1/zabbix-telegram.sh
+chmod +x zabbix-telegram.sh
+```
+Bạn phải sửa tham số ZBX_URL là địa chỉ zabbix server, USERNAME, PASSWORD, BOT_TOKEN là chuỗi token telegram bot nhận cảnh cáo.
+
+```
+cd /usr/lib/zabbix/alertscripts
+vi zabbix-telegram.sh
+
+Chỉnh sửa 
+
+ZBX_URL="http://ip-zabbix-server/zabbix"
+USERNAME="Admin"
+PASSWORD="passWord"
+
+BOT_TOKEN='token-telegram'
+```
+
+![](../images/Screenshot_367.png)
+
+## 3. Cấu hình trên Web Zabbix
 
 Administrator -> Media types -> Update
 
-![](https://i.imgur.com/H2mbT1B.png)
+![](../images/Screenshot_368.png)
 
 Name: telegram (Tên có thể tùy đặt)
 
@@ -59,7 +83,7 @@ Script parameter:
 
 {ALERT.SUBJECT}
 
-{ALERT.SUBJECT}
+{ALERT.MESSAGE}
 
 * Set user có quyền thực thi alert qua telegram
 * Administrator -> User -> Admin -> Media -> Add
@@ -70,7 +94,7 @@ Script parameter:
 
 Type: Chính là type mà đã tạo ở trên
 
-Sento: chatID TokenAPI (phải điền đúng cú pháp mới gửi aler thành công).
+Sento: chatID (phải điền đúng chat_id của người nhận).
 
 Use of serverity: Các mức cảnh bảo
 
@@ -78,7 +102,7 @@ Enable: Tích vào
 
 ->Update
 
-* Tạo action để khi action xảy ra sẽ có alert qua email 
+* Tạo action để khi action xảy ra sẽ có alert qua telegram
 
 Configuration -> Action -> Create action
 
@@ -104,8 +128,5 @@ Cấu hình những thông số trong quá trình gửi email. Những thứ c�
 
 * Test gửi alert qua telegram khi action được thực hiện
 
-![](https://i.imgur.com/kwSSEnI.png)
-
-![](https://i.imgur.com/buJ453U.png)
-
+![](../images/Screenshot_368.png)
 
