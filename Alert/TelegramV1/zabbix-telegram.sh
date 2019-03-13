@@ -52,14 +52,14 @@ echo "$MESSAGE" > $ZABBIXMSG
 #############################################
 # Zabbix address
 #############################################
-ZBX_URL="http://103.101.161.246/zabbix"
+ZBX_URL="http://103.xxx.xxx.xxx/zabbix"
 
 ##############################################
 # Zabbix credentials to login
 ##############################################
 
 USERNAME="Admin"
-PASSWORD="Nhanhoa2018@A"
+PASSWORD="pass"
 
 #############################################
 # Zabbix versione >= 3.4.1
@@ -72,7 +72,7 @@ ZABBIXVERSION34="1"
 # Bot data from Telegram
 ############################################
 
-BOT_TOKEN='726730056:AAEPlM8i5f1NkAos-qCBGQRAwDk2Mdqpl4o'
+BOT_TOKEN='726730056:AAEPlM8i5f1NkAosabc'
 
 # If the GRAPHID variable is not compliant not send the graph
 
